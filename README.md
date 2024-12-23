@@ -61,7 +61,7 @@ Follow these steps to configure and maximize the Solana Bundler:
 
 ## 🎉 **Get Started**  
 
-🔧 Begin optimizing your Solana transactions with the **Solana Bundler** today!   
+🔧 Begin optimizing your Solana transactions with the **Solana Raydium Bundler** today!   
 📣 For technical queries, reach out on Telegram: [@g0drlc](https://t.me/g0drlc).  
 
 ---
