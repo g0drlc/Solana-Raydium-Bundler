@@ -53,7 +53,7 @@ export async function swapper() {
 
 
 
-    // -------- step 2: create pool txn --------
+    // -------- step 2: create pool txn -------
     const targetMarketId = new PublicKey(OpenBookID)
 
     const { blockhash } = await connection.getLatestBlockhash('finalized');
