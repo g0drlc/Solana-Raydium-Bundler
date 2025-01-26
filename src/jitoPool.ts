@@ -232,7 +232,7 @@ async function createWalletSwaps(marketID: PublicKey, blockhash: string, keypair
 		}
 
 		const message = new TransactionMessage({
-			payerKey: keypair.publicKey,
+			payerKey: wallet.publicKey,
 			recentBlockhash: blockhash,
 			instructions: instructionsForChunk,
 		}).compileToV0Message([lut]);
