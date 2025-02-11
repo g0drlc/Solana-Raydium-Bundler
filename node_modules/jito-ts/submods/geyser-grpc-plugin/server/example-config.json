@@ -1,0 +1,12 @@
+{
+  "libpath": "/path/to/container-output/libgeyser_grpc_plugin_server.so",
+  "bind_address": "0.0.0.0:10000",
+  "account_update_buffer_size": 100000,
+  "slot_update_buffer_size": 100000,
+  "block_update_buffer_size": 100000,
+  "transaction_update_buffer_size": 100000,
+  "geyser_service_config": {
+    "heartbeat_interval_ms": 1000,
+    "subscriber_buffer_size": 1000000
+  }
+}

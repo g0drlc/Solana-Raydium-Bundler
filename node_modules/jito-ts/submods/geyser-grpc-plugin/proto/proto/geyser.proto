@@ -1,0 +1,189 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "confirmed_block.proto";
+
+package solana.geyser;
+
+message PartialAccountUpdate {
+  // Slot this update occurred.
+  uint64 slot = 1;
+
+  // Account's pubkey.
+  bytes pubkey = 2;
+
+  // Account's owner.
+  bytes owner = 3;
+
+  // Flags whether this update was streamed as part of startup, hence not a realtime update.
+  bool is_startup = 4;
+
+  // A monotonically increasing number specifying the order of this update.
+  // Can be used to determine what the latest update for an account was at
+  // a given slot, assuming there were multiple updates.
+  uint64 seq = 5;
+
+  // Transaction signature that caused this update.
+  optional string tx_signature = 6;
+
+  // AccountReplica version.
+  uint32 replica_version = 7;
+}
+
+message AccountUpdate {
+  // Slot this update occurred.
+  uint64 slot = 1;
+
+  // Account's pubkey.
+  bytes pubkey = 2;
+
+  // Account's lamports post update.
+  uint64 lamports = 3;
+
+  // Account's owner.
+  bytes owner = 4;
+
+  // Flags whether an account is executable.
+  bool is_executable = 5;
+
+  // The epoch at which this account will next owe rent.
+  uint64 rent_epoch = 6;
+
+  // Account's data post update.
+  bytes data = 7;
+
+  // A monotonically increasing number specifying the order of this update.
+  // Can be used to determine what the latest update for an account was at
+  // a given slot, assuming there were multiple updates.
+  uint64 seq = 8;
+
+  // Flags whether this update was streamed as part of startup i.e. not a real-time update.
+  bool is_startup = 9;
+
+  // Transaction signature that caused this update.
+  optional string tx_signature = 10;
+
+  // AccountReplica version.
+  uint32 replica_version = 11;
+}
+
+enum SlotUpdateStatus {
+  CONFIRMED = 0;
+  PROCESSED = 1;
+  ROOTED = 2;
+}
+
+message SlotUpdate {
+  uint64 slot = 1;
+  optional uint64 parent_slot = 2;
+  SlotUpdateStatus status = 3;
+}
+
+message TimestampedSlotUpdate {
+  // Time at which the message was generated
+  google.protobuf.Timestamp ts = 1;
+  // Slot update
+  SlotUpdate slot_update = 2;
+}
+
+message TimestampedAccountUpdate {
+  // Time at which the message was generated
+  google.protobuf.Timestamp ts = 1;
+  // Account update
+  AccountUpdate account_update = 2;
+}
+
+message SubscribeTransactionUpdatesRequest {}
+
+message SubscribeBlockUpdatesRequest {}
+
+message MaybePartialAccountUpdate {
+  oneof msg {
+    PartialAccountUpdate partial_account_update = 1;
+    Heartbeat hb = 2;
+  }
+}
+
+message Heartbeat {}
+message EmptyRequest {}
+
+message BlockUpdate {
+  uint64  slot = 1;
+  string blockhash = 2;
+  repeated storage.ConfirmedBlock.Reward rewards = 3;
+  google.protobuf.Timestamp block_time = 4;
+  optional uint64 block_height = 5;
+  optional uint64 executed_transaction_count = 6;
+  optional uint64 entry_count = 7;
+}
+
+message TimestampedBlockUpdate {
+  // Time at which the message was generated
+  google.protobuf.Timestamp ts = 1;
+  // Block contents
+  BlockUpdate block_update = 2;
+}
+
+message TransactionUpdate {
+  uint64 slot = 1;
+  string signature = 2;
+  bool is_vote = 3;
+  uint64 tx_idx = 4;
+  storage.ConfirmedBlock.ConfirmedTransaction tx = 5;
+}
+
+message TimestampedTransactionUpdate {
+  google.protobuf.Timestamp ts = 1;
+  TransactionUpdate transaction = 2;
+}
+
+
+message SubscribeSlotUpdateRequest {}
+
+message SubscribeAccountUpdatesRequest {
+  repeated bytes accounts = 1;
+}
+
+message SubscribeProgramsUpdatesRequest {
+  repeated bytes programs = 1;
+}
+
+message SubscribePartialAccountUpdatesRequest {
+  // If true, will not stream vote account updates.
+  bool skip_vote_accounts = 1;
+}
+
+message GetHeartbeatIntervalResponse {
+  uint64 heartbeat_interval_ms = 1;
+}
+
+// The following __must__ be assumed:
+//    - Clients may receive data for slots out of order.
+//    - Clients may receive account updates for a given slot out of order.
+service Geyser {
+  // Invoke to get the expected heartbeat interval.
+  rpc GetHeartbeatInterval(EmptyRequest) returns (GetHeartbeatIntervalResponse) {}
+
+  // Subscribes to account updates in the accounts database; additionally pings clients with empty heartbeats.
+  // Upon initially connecting the client can expect a `highest_write_slot` set in the http headers.
+  // Subscribe to account updates
+  rpc SubscribeAccountUpdates(SubscribeAccountUpdatesRequest) returns (stream TimestampedAccountUpdate) {}
+
+  // Subscribes to updates given a list of program IDs. When an account update comes in that's owned by a provided
+  // program id, one will receive an update
+  rpc SubscribeProgramUpdates(SubscribeProgramsUpdatesRequest) returns (stream TimestampedAccountUpdate) {}
+
+  // Functions similarly to `SubscribeAccountUpdates`, but consumes less bandwidth.
+  // Returns the highest slot seen thus far in the http headers named `highest-write-slot`.
+  rpc SubscribePartialAccountUpdates(SubscribePartialAccountUpdatesRequest) returns (stream MaybePartialAccountUpdate) {}
+
+  // Subscribes to slot updates.
+  // Returns the highest slot seen thus far in the http headers named `highest-write-slot`.
+  rpc SubscribeSlotUpdates(SubscribeSlotUpdateRequest) returns (stream TimestampedSlotUpdate) {}
+
+  // Subscribes to transaction updates.
+  rpc SubscribeTransactionUpdates(SubscribeTransactionUpdatesRequest) returns (stream TimestampedTransactionUpdate) {}
+
+  // Subscribes to block updates.
+  rpc SubscribeBlockUpdates(SubscribeBlockUpdatesRequest) returns (stream TimestampedBlockUpdate) {}
+}

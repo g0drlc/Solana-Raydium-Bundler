@@ -1,0 +1,1 @@
+{"version":3,"file":"message-formatter.d.ts","sourceRoot":"","sources":["../../src/message-formatter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,SAAS,CAAC;AAgB1C,wBAAgB,4BAA4B,CAAC,UAAU,SAAS,eAAe,EAC3E,IAAI,EAAE,UAAU,EAChB,OAAO,GAAE,MAAW,GACrB,MAAM,CA6DR;AAED,wBAAgB,eAAe,CAAC,UAAU,SAAS,eAAe,EAAE,IAAI,EAAE,UAAU,EAAE,OAAO,GAAE,MAAW,GAAG,MAAM,CAelH"}

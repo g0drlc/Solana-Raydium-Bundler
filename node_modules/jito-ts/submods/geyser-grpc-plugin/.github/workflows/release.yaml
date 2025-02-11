@@ -1,0 +1,21 @@
+name: Release
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+env:
+  TAG: "$(git rev-parse --short HEAD)"
+
+jobs:
+  clean_code_check:
+    uses: ./.github/workflows/clean_code.yaml
+
+  run_tests:
+    needs: clean_code_check
+    uses: ./.github/workflows/test.yaml
+
+  push_artifacts:
+    needs: run_tests
+    uses: ./.github/workflows/push_artifacts.yaml
+    with:
+      TAG: ${{ github.ref_name }}-${{ github.sha }}

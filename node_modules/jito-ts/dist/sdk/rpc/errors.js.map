@@ -1,0 +1,1 @@
+{"version":3,"file":"errors.js","sourceRoot":"","sources":["../../../src/sdk/rpc/errors.ts"],"names":[],"mappings":";;;AAAA,qCAAqC;AACrC,uIAAuI;AACvI,MAAa,oBAAqB,SAAQ,KAAK;IAG7C,YAAY,OAAe,EAAE,IAAe;QAC1C,KAAK,CAAC,OAAO,CAAC,CAAC;QAEf,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;IACnB,CAAC;CACF;AARD,oDAQC"}

@@ -1,0 +1,61 @@
+{
+  "name": "@project-serum/serum",
+  "version": "0.13.65",
+  "description": "Library for interacting with the serum dex",
+  "license": "MIT",
+  "repository": "project-serum/serum-ts",
+  "main": "lib/index.js",
+  "source": "src/index.js",
+  "types": "lib/index.d.ts",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc --watch",
+    "clean": "rm -rf lib",
+    "prepare": "run-s clean build",
+    "shell": "node -e \"$(< shell)\" -i --experimental-repl-await",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "eslint src",
+    "test:unit": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.7",
+    "@types/bn.js": "^4.11.6",
+    "@types/jest": "^26.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "jest": "^26.4.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.2.0",
+    "typescript": "^4.0.5"
+  },
+  "files": [
+    "lib"
+  ],
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "@project-serum/anchor": "^0.11.1",
+    "@solana/spl-token": "^0.1.6",
+    "@solana/web3.js": "^1.21.0",
+    "bn.js": "^5.1.2",
+    "buffer-layout": "^1.2.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all",
+    "maintained node versions"
+  ]
+}

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Path to these plugins
+PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts_proto"
+
+PROTOS_PATH=$1
+
+
+# Directory to write generated code to
+OUT_DIR="./src/gen/block-engine"
+
+protoc \
+  --plugin=${PROTOC_GEN_TS_PATH} \
+  --proto_path="${PROTOS_PATH}" \
+  --ts_proto_out=${OUT_DIR} \
+  --ts_proto_opt=outputServices=grpc-js \
+  --ts_proto_opt=esModuleInterop=true \
+  auth.proto block.proto block_engine.proto bundle.proto packet.proto relayer.proto searcher.proto shared.proto shredstream.proto
