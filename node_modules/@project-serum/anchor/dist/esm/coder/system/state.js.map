@@ -1,0 +1,1 @@
+{"version":3,"file":"state.js","sourceRoot":"","sources":["../../../../src/coder/system/state.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,gBAAgB;IAC3B,gEAAgE;IAChE,YAAY,IAAS,IAAG,CAAC;IAEzB,MAAM,CAAU,KAAa,EAAE,QAAW;QACxC,MAAM,IAAI,KAAK,CAAC,4BAA4B,CAAC,CAAC;IAChD,CAAC;IACD,MAAM,CAAU,GAAW;QACzB,MAAM,IAAI,KAAK,CAAC,4BAA4B,CAAC,CAAC;IAChD,CAAC;CACF"}

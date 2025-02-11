@@ -1,0 +1,16 @@
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "declaration": true,
+    "noEmit": false,
+    "rootDir": "src",
+    "outDir": "dist",
+    "resolveJsonModule": false,
+    "esModuleInterop": true,
+    "lib": ["DOM"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ],
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"readonly-uint8array.d.ts","sourceRoot":"","sources":["../../src/readonly-uint8array.ts"],"names":[],"mappings":"AAAA,KAAK,2BAA2B,GAAG,YAAY,GAAG,MAAM,GAAG,SAAS,GAAG,KAAK,GAAG,MAAM,CAAC;AACtF,MAAM,WAAW,kBAAmB,SAAQ,IAAI,CAAC,UAAU,EAAE,2BAA2B,CAAC;IACrF,QAAQ,EAAE,CAAC,EAAE,MAAM,GAAG,MAAM,CAAC;CAChC"}

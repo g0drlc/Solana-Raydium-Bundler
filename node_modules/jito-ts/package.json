@@ -1,0 +1,43 @@
+{
+  "author": "Jito Team <team@jito.wtf>",
+  "license": "Apache-2.0",
+  "name": "jito-ts",
+  "version": "3.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "prepublish": "tsc",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.8.13",
+    "@noble/ed25519": "^1.7.1",
+    "@solana/web3.js": "~1.77.3",
+    "agentkeepalive": "^4.3.0",
+    "dotenv": "^16.0.3",
+    "jayson": "^4.0.0",
+    "node-fetch": "^2.6.7",
+    "superstruct": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/google-protobuf": "^3.15.6",
+    "@types/node": "^14.11.2",
+    "@types/node-fetch": "^2.6",
+    "grpc-tools": "^1.12.3",
+    "gts": "^3.1.1",
+    "protoc-gen-ts": "^0.8.5",
+    "ts-proto": "~1.138.0",
+    "ts-protoc-gen": "~0.15.0",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "gen-block-engine": "./scripts/gen-block-engine-protos submods/mev-protos",
+    "gen-geyser": "./scripts/gen-geyser-protos submods/geyser-grpc-plugin/proto/proto",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "yarn run compile",
+    "pretest": "yarn run compile",
+    "posttest": "yarn run lint",
+    "run:backrun": "yarn tsc && node dist/examples/backrun/index",
+    "run:geyser": "yarn tsc && node dist/examples/geyser/index"
+  }
+}

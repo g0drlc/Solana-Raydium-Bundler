@@ -1,0 +1,1 @@
+{"version":3,"file":"discriminator.js","sourceRoot":"","sources":["../../../../src/coder/borsh/discriminator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,sBAAsB,CAAC;AAE9C;;GAEG;AACH,MAAM,CAAC,MAAM,kBAAkB,GAAG,CAAC,CAAC;AAEpC,MAAM,UAAU,aAAa,CAAC,QAAgB;IAC5C,OAAO,MAAM,CAAC,IAAI,CAAC,MAAM,CAAC,QAAQ,CAAC,CAAC,KAAK,CAAC,CAAC,EAAE,kBAAkB,CAAC,CAAC,CAAC;AACpE,CAAC"}

@@ -1,0 +1,24 @@
+[package]
+name = "jito-geyser-protos"
+version = { workspace = true }
+license = { workspace = true }
+authors = { workspace = true }
+edition = { workspace = true }
+description = "Jito's Solana geyser protobufs and helper libraries"
+
+[dependencies]
+bincode = { workspace = true }
+prost = { workspace = true }
+prost-types = { workspace = true }
+serde = { workspace = true }
+solana-account-decoder = { workspace = true }
+solana-sdk = { workspace = true }
+solana-transaction-status = { workspace = true }
+tonic = { workspace = true }
+
+[build-dependencies]
+tonic-build = { workspace = true }
+
+[dev-dependencies]
+bs58 = { workspace = true }
+enum-iterator = { workspace = true }

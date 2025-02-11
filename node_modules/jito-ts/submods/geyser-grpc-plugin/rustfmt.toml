@@ -1,0 +1,5 @@
+edition = "2021"  # required by rust-analyzer
+imports_granularity="Crate"
+format_code_in_doc_comments = true
+error_on_unformatted = true
+group_imports = "StdExternalCrate"

@@ -1,0 +1,6 @@
+[submodule "submods/mev-protos"]
+	path = submods/mev-protos
+	url = https://github.com/jito-labs/mev-protos.git
+[submodule "submods/geyser-grpc-plugin"]
+	path = submods/geyser-grpc-plugin
+	url = https://github.com/jito-foundation/geyser-grpc-plugin.git
